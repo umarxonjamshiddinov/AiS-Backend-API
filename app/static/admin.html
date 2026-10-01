@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>AiS · Control</title>
+  <link rel="stylesheet" href="/static/admin.css?v=405051bf63669768"><script src="/static/admin.js?v=5d2aa169603effd2" defer></script>
+</head>
+<body>
+<aside>
+  <a class="brand" href="/admin"><span class="mark">A</span> AiS <small>CONTROL</small></a>
+  <p class="nav active">Модели и API-доступ</p>
+  <p class="hint">Единая точка доступа<br>к вашим AI-моделям</p>
+  <div class="aside-bottom"><span class="dot"></span> AI gateway<br><small>OpenAI-compatible · /v1</small></div>
+</aside>
+<main>
+  <header><div><p class="eyebrow">WORKSPACE / API GATEWAY</p><h1>Управление доступом</h1>
+    <p class="muted">Модели, возможности, ключи и технические лимиты.</p></div>
+    <button id="logout" class="secondary hidden">Выйти</button></header>
+  <section id="login" class="panel login"><h2>Вход администратора</h2>
+    <p class="muted">Введите ADMIN_TOKEN вашего AiS Gateway.</p>
+    <form id="login-form"><label>ADMIN_TOKEN<input id="admin-token" type="password" autocomplete="off" required></label>
+      <p id="login-status" role="alert"></p><button id="login-submit" type="submit">Войти</button></form></section>
+  <div id="app" class="hidden">
+    <div class="stats">
+      <article><span>Активные ключи</span><strong id="stat-keys">—</strong></article>
+      <article><span>Запросы сегодня · UTC</span><strong id="stat-requests">—</strong><small id="stat-errors"></small></article>
+      <article><span>Учтённые токены · UTC</span><strong id="stat-tokens">—</strong></article>
+      <article><span>Одновременные запросы</span><strong id="stat-active">—</strong></article>
+    </div>
+    <section class="panel">
+      <div class="section-title"><div><p class="eyebrow">01 / PROVIDERS</p><h2>Провайдеры</h2></div>
+        <span class="badge">Секреты доступны только серверу</span></div>
+      <p id="provider-status" class="muted"></p>
+      <form id="credentials-form" class="inline-form">
+        <label>Провайдер<select id="provider"><option value="amazon_bedrock">Bedrock Mantle</option><option value="bedrock">Bedrock Converse</option></select></label>
+        <label class="grow">Серверный Bedrock bearer token<input id="provider-key" type="password" autocomplete="off" required minlength="10" placeholder="Сохранить или заменить секрет"></label>
+        <button>Сохранить</button>
+      </form>
+    </section>
+    <section class="panel">
+      <div class="section-title"><div><p class="eyebrow">02 / MODEL REGISTRY</p><h2>Каталог моделей</h2></div>
+        <button id="new-model" class="secondary">+ Добавить модель</button></div>
+      <p class="muted">42 модели Cloud Bot v7: 40 публичных и 2 внутренние Safety. Старые aliases сохранены. Настройки хранятся в БД.</p>
+      <div class="table-scroll"><table><thead><tr><th>Alias</th><th>Провайдер / Model ID</th><th>Возможности / токены</th><th>Доступ</th><th></th></tr></thead><tbody id="models"></tbody></table></div>
+    </section>
+    <section class="panel">
+      <div class="section-title"><div><p class="eyebrow">03 / USERS</p><h2>Пользователи</h2></div></div>
+      <form id="user-form" class="inline-form">
+        <label class="grow">Username<input id="user-name" required maxlength="100" pattern="[a-zA-Z0-9][a-zA-Z0-9._@-]*" placeholder="owner"></label>
+        <button>Создать пользователя</button>
+      </form>
+      <div class="table-scroll"><table><thead><tr><th>Пользователь</th><th>Статус</th><th></th></tr></thead><tbody id="users"></tbody></table></div>
+    </section>
+    <section class="panel">
+      <div class="section-title"><div><p class="eyebrow">04 / API KEYS</p><h2>Клиентские ключи</h2></div>
+        <div><button id="show-archived-keys" class="secondary" type="button">Архивированные</button>
+        <button id="new-key">+ Создать ключ</button></div></div>
+      <div class="table-scroll"><table><thead><tr><th>Клиент / префикс</th><th>Модели</th><th>RPM / TPM / concurrency</th><th>Суточные / месячные квоты</th><th>Статус</th><th></th></tr></thead><tbody id="keys"></tbody></table></div>
+    </section>
+    <section class="panel">
+      <div class="section-title"><div><p class="eyebrow">04 / USAGE</p><h2>Последние запросы</h2></div>
+        <button id="refresh" class="secondary">Обновить</button></div>
+      <p class="muted">Метаданные, токены, ошибки и активные резервы. Сообщения и секреты не сохраняются. «Оценка» означает, что провайдер не вернул usage.</p>
+      <div class="table-scroll"><table><thead><tr><th>Время / клиент</th><th>Маршрут / провайдер</th><th>Input / output / учтено</th><th>Статус / ошибка</th><th>Резерв / действие</th></tr></thead><tbody id="usage"></tbody></table></div>
+    </section>
+    <details class="panel"><summary>Дополнительный учёт стоимости</summary>
+      <p id="cost-summary" class="muted"></p>
+      <p class="muted">Необязательный бюджет — общий лимит ключа по настроенным тарифам. Он не является платёжной системой.</p>
+    </details>
+    <footer>Public API: <code id="base-url">https://api.myais.uz/v1</code><br>
+      <span id="local-api" class="hidden">Этот сервер: <code id="local-base-url"></code><br></span>
+      RPM/TPM: скользящие 60 секунд. День и месяц: календарные периоды UTC.
+      Неизвестный расход учитывается консервативно; активные резервы снимаются автоматически.</footer>
+  </div>
+  <p id="notice" role="status"></p>
+</main>
+<dialog id="key-dialog"><form id="key-form">
+  <div class="section-title"><h2 id="key-title">Новый ключ</h2><button type="button" class="close secondary" aria-label="Закрыть">×</button></div>
+  <label>Название клиента<input id="key-name" required maxlength="100" placeholder="Клиент API"></label>
+  <label>Пользователь<select id="key-user" required></select></label>
+  <div class="form-grid">
+    <label>RPM<input id="key-rpm" type="number" min="1" max="100000" value="30" placeholder="Без лимита" aria-describedby="key-minute-limits-help"></label>
+    <label>TPM<input id="key-tpm" type="number" min="1" max="1000000000" value="2000000" placeholder="Без лимита" aria-describedby="key-minute-limits-help"></label>
+    <label>Запросов в день<input id="key-requests-day" type="number" min="1" placeholder="Без лимита"></label>
+    <label>Запросов в месяц<input id="key-requests-month" type="number" min="1" placeholder="Без лимита"></label>
+    <label>Токенов в день<input id="key-tokens-day" type="number" min="1" placeholder="Без лимита"></label>
+    <label>Токенов в месяц<input id="key-tokens-month" type="number" min="1" placeholder="Без лимита"></label>
+    <label>Одновременных запросов<input id="key-concurrency" type="number" min="1" max="10000" value="5" placeholder="Без лимита"></label>
+    <label>Срок действия · местное время<input id="key-expiry" type="datetime-local"></label>
+  </div>
+  <p id="key-minute-limits-help" class="muted">Оставьте RPM или TPM пустым для «Без лимита».</p>
+  <label class="check"><input id="key-active" type="checkbox" checked> Ключ включён</label>
+  <p id="key-revoked-note" class="muted hidden">Ключ отозван окончательно. Для нового доступа создайте другой ключ.</p>
+  <h3>Разрешённые модели</h3><div id="permissions" class="permissions"></div>
+  <label class="check"><input id="key-all-public" type="checkbox" checked> Все публичные модели каталога</label>
+  <p class="muted">Внутренние Safety-модели недоступны. При отключённом общем доступе выберите нужные модели.</p>
+  <details><summary>Необязательный денежный бюджет</summary><label>Общий лимит, USD<input id="key-budget" type="number" min="0.00000001" step="any" placeholder="Без денежного лимита"></label></details>
+  <p class="dialog-notice" role="alert"></p><button>Сохранить</button>
+</form></dialog>
+<dialog id="archived-keys-dialog">
+  <div class="section-title"><h2>Архивированные ключи</h2><button type="button" class="close secondary" aria-label="Закрыть">×</button></div>
+  <p class="muted">Отозванные и недействующие ключи. Отключённые и истёкшие ключи также доступны здесь для управления. История остаётся в разделе «Последние запросы».</p>
+  <div class="table-scroll"><table><thead><tr><th>Клиент / owner / префикс</th><th>Модели</th><th>RPM / TPM / concurrency</th><th>Суточные / месячные квоты</th><th>Статус</th><th>Создан / отозван</th><th></th></tr></thead><tbody id="archived-keys"></tbody></table></div>
+</dialog>
+<dialog id="issued-dialog">
+  <div class="section-title"><h2>Ключ создан</h2><button type="button" class="close secondary" aria-label="Закрыть">×</button></div>
+  <p class="muted">Скопируйте сейчас. Полное значение больше не будет показано.</p>
+  <textarea id="issued-key" readonly rows="3" aria-label="Новый API key"></textarea><button id="copy-key">Копировать</button>
+  <p class="muted">Base URL: <code id="issued-url">https://api.myais.uz/v1</code></p>
+</dialog>
+<dialog id="model-dialog"><form id="model-form">
+  <div class="section-title"><h2>Маршрут модели</h2><button type="button" class="close secondary" aria-label="Закрыть">×</button></div>
+  <label>Alias для клиентов<input id="model-alias" required pattern="[a-zA-Z0-9][a-zA-Z0-9._-]{0,99}" placeholder="ais-fast"></label>
+  <div class="form-grid">
+    <label>Провайдер<select id="model-provider"><option value="amazon_bedrock">Bedrock Mantle</option><option value="bedrock">Bedrock Converse</option></select></label>
+    <label>Transport<input id="model-transport" readonly></label>
+  </div>
+  <label>Реальный model / inference profile ID<input id="model-upstream" required maxlength="200" placeholder="Подтверждённый ID провайдера"></label>
+  <div id="model-mantle-fields">
+    <div class="form-grid">
+      <label>Model key<input id="model-key" maxlength="100" placeholder="grok_4_3"></label>
+      <label>Отображаемое имя<input id="model-name" maxlength="200" placeholder="Grok 4.3"></label>
+      <label>Производитель<input id="model-manufacturer" maxlength="100" placeholder="xAI"></label>
+      <label>Регион<input id="model-region" maxlength="40" placeholder="us-east-1"></label>
+      <label>Маршрут<select id="model-route"><option value="mantle_default">/v1</option><option value="mantle_openai">/openai/v1</option></select></label>
+      <label>Обработка изображений<select id="model-vision"><option value="none">Не подключена</option><option value="native_vision">Native vision</option><option value="vision_fallback">Описание через Qwen</option></select></label>
+    </div>
+  </div>
+  <div class="form-grid">
+    <label>Max output tokens<input id="model-max" type="number" min="1" max="1000000" value="4096" placeholder="Не указан в источнике"></label>
+    <label>Max context tokens<input id="model-context" type="number" min="1" max="10000000" placeholder="Не задан"></label>
+  </div>
+  <label class="check"><input id="model-enabled" type="checkbox" checked> Маршрут включён</label>
+  <label class="check"><input id="model-external" type="checkbox" checked> Разрешён во внешнем API</label>
+  <h3>Возможности модели</h3>
+  <p class="muted">Включайте подтверждённые возможности конкретной модели. Недоступные адаптеру функции отключены. JSON schema означает нативный structured output.</p>
+  <div id="capabilities" class="permissions"></div>
+  <h3>Режимы tool_choice</h3><div id="tool-modes" class="permissions"></div>
+  <h3>Reasoning effort</h3><div id="reasoning-modes" class="permissions"></div>
+  <p class="muted">Native vision резервирует полный контекст. Qwen fallback учитывает ограниченный объём описания. Audio/video и reasoning effort в Mantle не подключены.</p>
+  <details><summary>Необязательные тарифы для учёта стоимости</summary><div class="form-grid">
+    <label>Input, USD / 1M tokens<input id="model-input" type="number" min="0" step="any" value="0"></label>
+    <label>Output, USD / 1M tokens<input id="model-output" type="number" min="0" step="any" value="0"></label>
+  </div></details>
+  <p class="dialog-notice" role="alert"></p><button>Сохранить маршрут</button>
+</form></dialog>
+</body>
+</html>

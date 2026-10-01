@@ -1,0 +1,1737 @@
+{
+  "schema_version": 1,
+  "source": "Complete user-supplied AiS Cloud Bot v7 technical export (42 models). Immutable bootstrap snapshot; PostgreSQL model_routes is runtime authority.",
+  "models": [
+    {
+      "model_key": "grok_4_3",
+      "model_id": "xai.grok-4.3",
+      "display_name": "Grok 4.3",
+      "manufacturer": "xAI",
+      "backend": "amazon_bedrock",
+      "region": "us-east-1",
+      "api_route": "mantle_openai",
+      "context_window": 1000000,
+      "max_output": null,
+      "model_type": null,
+      "supports_vision": true,
+      "supports_reasoning": false,
+      "reasoning_efforts": [],
+      "is_public": true,
+      "vision_behavior": "native_vision",
+      "metadata": {
+        "catalog": "cloud_bot_v7",
+        "catalog_order": 0,
+        "cost_tier": "PREMIUM",
+        "registered_input_modalities": [
+          "text",
+          "image"
+        ],
+        "registered_output_modalities": [
+          "text"
+        ],
+        "runtime_input_modalities": [
+          "text",
+          "image"
+        ],
+        "runtime_output_modalities": [
+          "text"
+        ],
+        "audio_runtime": false,
+        "video_runtime": false,
+        "reasoning_control_runtime": false,
+        "model_type_source": "not_specified_in_export",
+        "deployment_name": null
+      }
+    },
+    {
+      "model_key": "grok_4_6",
+      "model_id": "xai.grok-4.6",
+      "display_name": "Grok 4.6",
+      "manufacturer": "xAI",
+      "backend": "amazon_bedrock",
+      "region": "us-west-2",
+      "api_route": "mantle_openai",
+      "context_window": 500000,
+      "max_output": null,
+      "model_type": null,
+      "supports_vision": true,
+      "supports_reasoning": true,
+      "reasoning_efforts": [
+        "low",
+        "medium",
+        "high",
+        "xhigh"
+      ],
+      "is_public": true,
+      "vision_behavior": "native_vision",
+      "metadata": {
+        "catalog": "cloud_bot_v7",
+        "catalog_order": 1,
+        "cost_tier": "PREMIUM",
+        "registered_input_modalities": [
+          "text",
+          "image"
+        ],
+        "registered_output_modalities": [
+          "text"
+        ],
+        "runtime_input_modalities": [
+          "text",
+          "image"
+        ],
+        "runtime_output_modalities": [
+          "text"
+        ],
+        "audio_runtime": false,
+        "video_runtime": false,
+        "reasoning_control_runtime": false,
+        "model_type_source": "not_specified_in_export",
+        "deployment_name": null
+      }
+    },
+    {
+      "model_key": "gemma_4_31b",
+      "model_id": "google.gemma-4-31b",
+      "display_name": "Gemma 4 31B",
+      "manufacturer": "Google",
+      "backend": "amazon_bedrock",
+      "region": "us-east-1",
+      "api_route": "mantle_openai",
+      "context_window": 256000,
+      "max_output": null,
+      "model_type": "multimodal",
+      "supports_vision": true,
+      "supports_reasoning": false,
+      "reasoning_efforts": [],
+      "is_public": true,
+      "vision_behavior": "native_vision",
+      "metadata": {
+        "catalog": "cloud_bot_v7",
+        "catalog_order": 2,
+        "cost_tier": "STANDARD",
+        "registered_input_modalities": [
+          "text",
+          "image",
+          "video"
+        ],
+        "registered_output_modalities": [
+          "text"
+        ],
+        "runtime_input_modalities": [
+          "text",
+          "image"
+        ],
+        "runtime_output_modalities": [
+          "text"
+        ],
+        "audio_runtime": false,
+        "video_runtime": false,
+        "reasoning_control_runtime": false,
+        "model_type_source": "export",
+        "deployment_name": null
+      }
+    },
+    {
+      "model_key": "gemma_4_e2b",
+      "model_id": "google.gemma-4-e2b",
+      "display_name": "Gemma 4 E2B",
+      "manufacturer": "Google",
+      "backend": "amazon_bedrock",
+      "region": "us-east-1",
+      "api_route": "mantle_openai",
+      "context_window": 128000,
+      "max_output": null,
+      "model_type": "multimodal",
+      "supports_vision": true,
+      "supports_reasoning": false,
+      "reasoning_efforts": [],
+      "is_public": true,
+      "vision_behavior": "native_vision",
+      "metadata": {
+        "catalog": "cloud_bot_v7",
+        "catalog_order": 3,
+        "cost_tier": "STANDARD",
+        "registered_input_modalities": [
+          "text",
+          "image",
+          "video",
+          "speech"
+        ],
+        "registered_output_modalities": [
+          "text"
+        ],
+        "runtime_input_modalities": [
+          "text",
+          "image"
+        ],
+        "runtime_output_modalities": [
+          "text"
+        ],
+        "audio_runtime": false,
+        "video_runtime": false,
+        "reasoning_control_runtime": false,
+        "model_type_source": "export",
+        "deployment_name": null
+      }
+    },
+    {
+      "model_key": "gemma_4_26b_a4b",
+      "model_id": "google.gemma-4-26b-a4b",
+      "display_name": "Gemma 4 26B-A4B",
+      "manufacturer": "Google",
+      "backend": "amazon_bedrock",
+      "region": "us-east-1",
+      "api_route": "mantle_openai",
+      "context_window": 256000,
+      "max_output": null,
+      "model_type": "multimodal",
+      "supports_vision": true,
+      "supports_reasoning": false,
+      "reasoning_efforts": [],
+      "is_public": true,
+      "vision_behavior": "native_vision",
+      "metadata": {
+        "catalog": "cloud_bot_v7",
+        "catalog_order": 4,
+        "cost_tier": "STANDARD",
+        "registered_input_modalities": [
+          "text",
+          "image",
+          "video"
+        ],
+        "registered_output_modalities": [
+          "text"
+        ],
+        "runtime_input_modalities": [
+          "text",
+          "image"
+        ],
+        "runtime_output_modalities": [
+          "text"
+        ],
+        "audio_runtime": false,
+        "video_runtime": false,
+        "reasoning_control_runtime": false,
+        "model_type_source": "export",
+        "deployment_name": null
+      }
+    },
+    {
+      "model_key": "palmyra_vision_7b",
+      "model_id": "writer.palmyra-vision-7b",
+      "display_name": "Palmyra Vision 7B",
+      "manufacturer": "Writer",
+      "backend": "amazon_bedrock",
+      "region": "us-east-1",
+      "api_route": "mantle_default",
+      "context_window": 4000,
+      "max_output": 4000,
+      "model_type": null,
+      "supports_vision": true,
+      "supports_reasoning": false,
+      "reasoning_efforts": [],
+      "is_public": true,
+      "vision_behavior": "native_vision",
+      "metadata": {
+        "catalog": "cloud_bot_v7",
+        "catalog_order": 5,
+        "cost_tier": "STANDARD",
+        "registered_input_modalities": [
+          "text",
+          "image"
+        ],
+        "registered_output_modalities": [
+          "text"
+        ],
+        "runtime_input_modalities": [
+          "text",
+          "image"
+        ],
+        "runtime_output_modalities": [
+          "text"
+        ],
+        "audio_runtime": false,
+        "video_runtime": false,
+        "reasoning_control_runtime": false,
+        "model_type_source": "not_specified_in_export",
+        "default_chat_output": 1000,
+        "deployment_name": null
+      }
+    },
+    {
+      "model_key": "glm_5",
+      "model_id": "zai.glm-5",
+      "display_name": "GLM 5",
+      "manufacturer": "Z.AI",
+      "backend": "amazon_bedrock",
+      "region": "us-east-1",
+      "api_route": "mantle_default",
+      "context_window": 200000,
+      "max_output": 128000,
+      "model_type": null,
+      "supports_vision": false,
+      "supports_reasoning": false,
+      "reasoning_efforts": [],
+      "is_public": true,
+      "vision_behavior": "vision_fallback",
+      "metadata": {
+        "catalog": "cloud_bot_v7",
+        "catalog_order": 6,
+        "cost_tier": "PREMIUM",
+        "registered_input_modalities": [
+          "text"
+        ],
+        "registered_output_modalities": [
+          "text"
+        ],
+        "runtime_input_modalities": [
+          "text",
+          "image"
+        ],
+        "runtime_output_modalities": [
+          "text"
+        ],
+        "audio_runtime": false,
+        "video_runtime": false,
+        "reasoning_control_runtime": false,
+        "model_type_source": "not_specified_in_export",
+        "deployment_name": null
+      }
+    },
+    {
+      "model_key": "qwen3_coder_next",
+      "model_id": "qwen.qwen3-coder-next",
+      "display_name": "Qwen3 Coder Next",
+      "manufacturer": "Qwen",
+      "backend": "amazon_bedrock",
+      "region": "us-east-1",
+      "api_route": "mantle_default",
+      "context_window": 256000,
+      "max_output": 16000,
+      "model_type": "code",
+      "supports_vision": false,
+      "supports_reasoning": false,
+      "reasoning_efforts": [],
+      "is_public": true,
+      "vision_behavior": "vision_fallback",
+      "metadata": {
+        "catalog": "cloud_bot_v7",
+        "catalog_order": 7,
+        "cost_tier": "STANDARD",
+        "registered_input_modalities": [
+          "text"
+        ],
+        "registered_output_modalities": [
+          "text"
+        ],
+        "runtime_input_modalities": [
+          "text",
+          "image"
+        ],
+        "runtime_output_modalities": [
+          "text"
+        ],
+        "audio_runtime": false,
+        "video_runtime": false,
+        "reasoning_control_runtime": false,
+        "model_type_source": "export",
+        "deployment_name": null
+      }
+    },
+    {
+      "model_key": "glm_4_7_flash",
+      "model_id": "zai.glm-4.7-flash",
+      "display_name": "GLM 4.7 Flash",
+      "manufacturer": "Z.AI",
+      "backend": "amazon_bedrock",
+      "region": "us-east-1",
+      "api_route": "mantle_default",
+      "context_window": 203000,
+      "max_output": 4000,
+      "model_type": null,
+      "supports_vision": false,
+      "supports_reasoning": false,
+      "reasoning_efforts": [],
+      "is_public": true,
+      "vision_behavior": "vision_fallback",
+      "metadata": {
+        "catalog": "cloud_bot_v7",
+        "catalog_order": 8,
+        "cost_tier": "STANDARD",
+        "registered_input_modalities": [
+          "text"
+        ],
+        "registered_output_modalities": [
+          "text"
+        ],
+        "runtime_input_modalities": [
+          "text",
+          "image"
+        ],
+        "runtime_output_modalities": [
+          "text"
+        ],
+        "audio_runtime": false,
+        "video_runtime": false,
+        "reasoning_control_runtime": false,
+        "model_type_source": "not_specified_in_export",
+        "default_chat_output": 4000,
+        "deployment_name": null
+      }
+    },
+    {
+      "model_key": "kimi_k2_5",
+      "model_id": "moonshotai.kimi-k2.5",
+      "display_name": "Kimi K2.5",
+      "manufacturer": "Moonshot AI",
+      "backend": "amazon_bedrock",
+      "region": "us-east-1",
+      "api_route": "mantle_default",
+      "context_window": 256000,
+      "max_output": 16000,
+      "model_type": null,
+      "supports_vision": true,
+      "supports_reasoning": false,
+      "reasoning_efforts": [],
+      "is_public": true,
+      "vision_behavior": "native_vision",
+      "metadata": {
+        "catalog": "cloud_bot_v7",
+        "catalog_order": 9,
+        "cost_tier": "PREMIUM",
+        "registered_input_modalities": [
+          "text",
+          "image"
+        ],
+        "registered_output_modalities": [
+          "text"
+        ],
+        "runtime_input_modalities": [
+          "text",
+          "image"
+        ],
+        "runtime_output_modalities": [
+          "text"
+        ],
+        "audio_runtime": false,
+        "video_runtime": false,
+        "reasoning_control_runtime": false,
+        "model_type_source": "not_specified_in_export",
+        "deployment_name": null
+      }
+    },
+    {
+      "model_key": "glm_4_7",
+      "model_id": "zai.glm-4.7",
+      "display_name": "GLM 4.7",
+      "manufacturer": "Z.AI",
+      "backend": "amazon_bedrock",
+      "region": "us-east-1",
+      "api_route": "mantle_default",
+      "context_window": 203000,
+      "max_output": 4000,
+      "model_type": null,
+      "supports_vision": false,
+      "supports_reasoning": false,
+      "reasoning_efforts": [],
+      "is_public": true,
+      "vision_behavior": "vision_fallback",
+      "metadata": {
+        "catalog": "cloud_bot_v7",
+        "catalog_order": 10,
+        "cost_tier": "PREMIUM",
+        "registered_input_modalities": [
+          "text"
+        ],
+        "registered_output_modalities": [
+          "text"
+        ],
+        "runtime_input_modalities": [
+          "text",
+          "image"
+        ],
+        "runtime_output_modalities": [
+          "text"
+        ],
+        "audio_runtime": false,
+        "video_runtime": false,
+        "reasoning_control_runtime": false,
+        "model_type_source": "not_specified_in_export",
+        "default_chat_output": 4000,
+        "deployment_name": null
+      }
+    },
+    {
+      "model_key": "minimax_m2_5",
+      "model_id": "minimax.minimax-m2.5",
+      "display_name": "MiniMax M2.5",
+      "manufacturer": "MiniMax",
+      "backend": "amazon_bedrock",
+      "region": "us-east-1",
+      "api_route": "mantle_default",
+      "context_window": 196000,
+      "max_output": 8000,
+      "model_type": null,
+      "supports_vision": false,
+      "supports_reasoning": false,
+      "reasoning_efforts": [],
+      "is_public": true,
+      "vision_behavior": "vision_fallback",
+      "metadata": {
+        "catalog": "cloud_bot_v7",
+        "catalog_order": 11,
+        "cost_tier": "STANDARD",
+        "registered_input_modalities": [
+          "text"
+        ],
+        "registered_output_modalities": [
+          "text"
+        ],
+        "runtime_input_modalities": [
+          "text",
+          "image"
+        ],
+        "runtime_output_modalities": [
+          "text"
+        ],
+        "audio_runtime": false,
+        "video_runtime": false,
+        "reasoning_control_runtime": false,
+        "model_type_source": "not_specified_in_export",
+        "deployment_name": null
+      }
+    },
+    {
+      "model_key": "minimax_m2_1",
+      "model_id": "minimax.minimax-m2.1",
+      "display_name": "MiniMax M2.1",
+      "manufacturer": "MiniMax",
+      "backend": "amazon_bedrock",
+      "region": "us-east-1",
+      "api_route": "mantle_default",
+      "context_window": 196000,
+      "max_output": 8000,
+      "model_type": null,
+      "supports_vision": false,
+      "supports_reasoning": false,
+      "reasoning_efforts": [],
+      "is_public": true,
+      "vision_behavior": "vision_fallback",
+      "metadata": {
+        "catalog": "cloud_bot_v7",
+        "catalog_order": 12,
+        "cost_tier": "STANDARD",
+        "registered_input_modalities": [
+          "text"
+        ],
+        "registered_output_modalities": [
+          "text"
+        ],
+        "runtime_input_modalities": [
+          "text",
+          "image"
+        ],
+        "runtime_output_modalities": [
+          "text"
+        ],
+        "audio_runtime": false,
+        "video_runtime": false,
+        "reasoning_control_runtime": false,
+        "model_type_source": "not_specified_in_export",
+        "deployment_name": null
+      }
+    },
+    {
+      "model_key": "deepseek_v3_2",
+      "model_id": "deepseek.v3.2",
+      "display_name": "DeepSeek V3.2",
+      "manufacturer": "DeepSeek",
+      "backend": "amazon_bedrock",
+      "region": "us-east-1",
+      "api_route": "mantle_default",
+      "context_window": 164000,
+      "max_output": 8000,
+      "model_type": null,
+      "supports_vision": false,
+      "supports_reasoning": false,
+      "reasoning_efforts": [],
+      "is_public": true,
+      "vision_behavior": "vision_fallback",
+      "metadata": {
+        "catalog": "cloud_bot_v7",
+        "catalog_order": 13,
+        "cost_tier": "HIGHER_COST",
+        "registered_input_modalities": [
+          "text"
+        ],
+        "registered_output_modalities": [
+          "text"
+        ],
+        "runtime_input_modalities": [
+          "text",
+          "image"
+        ],
+        "runtime_output_modalities": [
+          "text"
+        ],
+        "audio_runtime": false,
+        "video_runtime": false,
+        "reasoning_control_runtime": false,
+        "model_type_source": "not_specified_in_export",
+        "deployment_name": null
+      }
+    },
+    {
+      "model_key": "nemotron_super_3_120b",
+      "model_id": "nvidia.nemotron-super-3-120b",
+      "display_name": "NVIDIA Nemotron 3 Super 120B",
+      "manufacturer": "NVIDIA",
+      "backend": "amazon_bedrock",
+      "region": "us-east-1",
+      "api_route": "mantle_default",
+      "context_window": 256000,
+      "max_output": 32000,
+      "model_type": null,
+      "supports_vision": false,
+      "supports_reasoning": false,
+      "reasoning_efforts": [],
+      "is_public": true,
+      "vision_behavior": "vision_fallback",
+      "metadata": {
+        "catalog": "cloud_bot_v7",
+        "catalog_order": 14,
+        "cost_tier": "STANDARD",
+        "registered_input_modalities": [
+          "text"
+        ],
+        "registered_output_modalities": [
+          "text"
+        ],
+        "runtime_input_modalities": [
+          "text",
+          "image"
+        ],
+        "runtime_output_modalities": [
+          "text"
+        ],
+        "audio_runtime": false,
+        "video_runtime": false,
+        "reasoning_control_runtime": false,
+        "model_type_source": "not_specified_in_export",
+        "deployment_name": null
+      }
+    },
+    {
+      "model_key": "devstral_2_123b",
+      "model_id": "mistral.devstral-2-123b",
+      "display_name": "Devstral 2 123B",
+      "manufacturer": "Mistral AI",
+      "backend": "amazon_bedrock",
+      "region": "us-east-1",
+      "api_route": "mantle_default",
+      "context_window": 256000,
+      "max_output": 32000,
+      "model_type": "code",
+      "supports_vision": false,
+      "supports_reasoning": false,
+      "reasoning_efforts": [],
+      "is_public": true,
+      "vision_behavior": "vision_fallback",
+      "metadata": {
+        "catalog": "cloud_bot_v7",
+        "catalog_order": 15,
+        "cost_tier": "PREMIUM",
+        "registered_input_modalities": [
+          "text"
+        ],
+        "registered_output_modalities": [
+          "text"
+        ],
+        "runtime_input_modalities": [
+          "text",
+          "image"
+        ],
+        "runtime_output_modalities": [
+          "text"
+        ],
+        "audio_runtime": false,
+        "video_runtime": false,
+        "reasoning_control_runtime": false,
+        "model_type_source": "export",
+        "deployment_name": null
+      }
+    },
+    {
+      "model_key": "nemotron_nano_3_30b",
+      "model_id": "nvidia.nemotron-nano-3-30b",
+      "display_name": "Nemotron Nano 3 30B",
+      "manufacturer": "NVIDIA",
+      "backend": "amazon_bedrock",
+      "region": "us-east-1",
+      "api_route": "mantle_default",
+      "context_window": 256000,
+      "max_output": 8000,
+      "model_type": null,
+      "supports_vision": false,
+      "supports_reasoning": false,
+      "reasoning_efforts": [],
+      "is_public": true,
+      "vision_behavior": "vision_fallback",
+      "metadata": {
+        "catalog": "cloud_bot_v7",
+        "catalog_order": 16,
+        "cost_tier": "STANDARD",
+        "registered_input_modalities": [
+          "text"
+        ],
+        "registered_output_modalities": [
+          "text"
+        ],
+        "runtime_input_modalities": [
+          "text",
+          "image"
+        ],
+        "runtime_output_modalities": [
+          "text"
+        ],
+        "audio_runtime": false,
+        "video_runtime": false,
+        "reasoning_control_runtime": false,
+        "model_type_source": "not_specified_in_export",
+        "deployment_name": null
+      }
+    },
+    {
+      "model_key": "qwen3_next_80b_a3b",
+      "model_id": "qwen.qwen3-next-80b-a3b-instruct",
+      "display_name": "Qwen3 Next 80B A3B",
+      "manufacturer": "Qwen",
+      "backend": "amazon_bedrock",
+      "region": "us-east-1",
+      "api_route": "mantle_default",
+      "context_window": 256000,
+      "max_output": 8000,
+      "model_type": null,
+      "supports_vision": false,
+      "supports_reasoning": false,
+      "reasoning_efforts": [],
+      "is_public": true,
+      "vision_behavior": "vision_fallback",
+      "metadata": {
+        "catalog": "cloud_bot_v7",
+        "catalog_order": 17,
+        "cost_tier": "STANDARD",
+        "registered_input_modalities": [
+          "text"
+        ],
+        "registered_output_modalities": [
+          "text"
+        ],
+        "runtime_input_modalities": [
+          "text",
+          "image"
+        ],
+        "runtime_output_modalities": [
+          "text"
+        ],
+        "audio_runtime": false,
+        "video_runtime": false,
+        "reasoning_control_runtime": false,
+        "model_type_source": "not_specified_in_export",
+        "deployment_name": null
+      }
+    },
+    {
+      "model_key": "qwen3_32b",
+      "model_id": "qwen.qwen3-32b",
+      "display_name": "Qwen3 32B",
+      "manufacturer": "Qwen",
+      "backend": "amazon_bedrock",
+      "region": "us-east-1",
+      "api_route": "mantle_default",
+      "context_window": 32000,
+      "max_output": 8000,
+      "model_type": null,
+      "supports_vision": false,
+      "supports_reasoning": false,
+      "reasoning_efforts": [],
+      "is_public": true,
+      "vision_behavior": "vision_fallback",
+      "metadata": {
+        "catalog": "cloud_bot_v7",
+        "catalog_order": 18,
+        "cost_tier": "STANDARD",
+        "registered_input_modalities": [
+          "text"
+        ],
+        "registered_output_modalities": [
+          "text"
+        ],
+        "runtime_input_modalities": [
+          "text",
+          "image"
+        ],
+        "runtime_output_modalities": [
+          "text"
+        ],
+        "audio_runtime": false,
+        "video_runtime": false,
+        "reasoning_control_runtime": false,
+        "model_type_source": "not_specified_in_export",
+        "deployment_name": null
+      }
+    },
+    {
+      "model_key": "gemma_3_12b_it",
+      "model_id": "google.gemma-3-12b-it",
+      "display_name": "Gemma 3 12B IT",
+      "manufacturer": "Google",
+      "backend": "amazon_bedrock",
+      "region": "us-east-1",
+      "api_route": "mantle_default",
+      "context_window": 128000,
+      "max_output": 8000,
+      "model_type": null,
+      "supports_vision": true,
+      "supports_reasoning": false,
+      "reasoning_efforts": [],
+      "is_public": true,
+      "vision_behavior": "native_vision",
+      "metadata": {
+        "catalog": "cloud_bot_v7",
+        "catalog_order": 19,
+        "cost_tier": "STANDARD",
+        "registered_input_modalities": [
+          "text",
+          "image"
+        ],
+        "registered_output_modalities": [
+          "text"
+        ],
+        "runtime_input_modalities": [
+          "text",
+          "image"
+        ],
+        "runtime_output_modalities": [
+          "text"
+        ],
+        "audio_runtime": false,
+        "video_runtime": false,
+        "reasoning_control_runtime": false,
+        "model_type_source": "not_specified_in_export",
+        "deployment_name": null
+      }
+    },
+    {
+      "model_key": "gemma_3_4b_it",
+      "model_id": "google.gemma-3-4b-it",
+      "display_name": "Gemma 3 4B IT",
+      "manufacturer": "Google",
+      "backend": "amazon_bedrock",
+      "region": "us-east-1",
+      "api_route": "mantle_default",
+      "context_window": 128000,
+      "max_output": 8000,
+      "model_type": null,
+      "supports_vision": true,
+      "supports_reasoning": false,
+      "reasoning_efforts": [],
+      "is_public": true,
+      "vision_behavior": "native_vision",
+      "metadata": {
+        "catalog": "cloud_bot_v7",
+        "catalog_order": 20,
+        "cost_tier": "STANDARD",
+        "registered_input_modalities": [
+          "text",
+          "image"
+        ],
+        "registered_output_modalities": [
+          "text"
+        ],
+        "runtime_input_modalities": [
+          "text",
+          "image"
+        ],
+        "runtime_output_modalities": [
+          "text"
+        ],
+        "audio_runtime": false,
+        "video_runtime": false,
+        "reasoning_control_runtime": false,
+        "model_type_source": "not_specified_in_export",
+        "deployment_name": null
+      }
+    },
+    {
+      "model_key": "gpt_oss_120b",
+      "model_id": "openai.gpt-oss-120b",
+      "display_name": "GPT OSS 120B",
+      "manufacturer": "OpenAI",
+      "backend": "amazon_bedrock",
+      "region": "us-east-1",
+      "api_route": "mantle_default",
+      "context_window": 128000,
+      "max_output": 16000,
+      "model_type": null,
+      "supports_vision": false,
+      "supports_reasoning": false,
+      "reasoning_efforts": [],
+      "is_public": true,
+      "vision_behavior": "vision_fallback",
+      "metadata": {
+        "catalog": "cloud_bot_v7",
+        "catalog_order": 21,
+        "cost_tier": "STANDARD",
+        "registered_input_modalities": [
+          "text"
+        ],
+        "registered_output_modalities": [
+          "text"
+        ],
+        "runtime_input_modalities": [
+          "text",
+          "image"
+        ],
+        "runtime_output_modalities": [
+          "text"
+        ],
+        "audio_runtime": false,
+        "video_runtime": false,
+        "reasoning_control_runtime": false,
+        "model_type_source": "not_specified_in_export",
+        "deployment_name": null
+      }
+    },
+    {
+      "model_key": "minimax_m2",
+      "model_id": "minimax.minimax-m2",
+      "display_name": "MiniMax M2",
+      "manufacturer": "MiniMax",
+      "backend": "amazon_bedrock",
+      "region": "us-east-1",
+      "api_route": "mantle_default",
+      "context_window": 1000000,
+      "max_output": 8000,
+      "model_type": null,
+      "supports_vision": false,
+      "supports_reasoning": false,
+      "reasoning_efforts": [],
+      "is_public": true,
+      "vision_behavior": "vision_fallback",
+      "metadata": {
+        "catalog": "cloud_bot_v7",
+        "catalog_order": 22,
+        "cost_tier": "STANDARD",
+        "registered_input_modalities": [
+          "text"
+        ],
+        "registered_output_modalities": [
+          "text"
+        ],
+        "runtime_input_modalities": [
+          "text",
+          "image"
+        ],
+        "runtime_output_modalities": [
+          "text"
+        ],
+        "audio_runtime": false,
+        "video_runtime": false,
+        "reasoning_control_runtime": false,
+        "model_type_source": "not_specified_in_export",
+        "deployment_name": null
+      }
+    },
+    {
+      "model_key": "voxtral_small_24b_2507",
+      "model_id": "mistral.voxtral-small-24b-2507",
+      "display_name": "Voxtral Small 24B 2507",
+      "manufacturer": "Mistral AI",
+      "backend": "amazon_bedrock",
+      "region": "us-east-1",
+      "api_route": "mantle_default",
+      "context_window": 32000,
+      "max_output": null,
+      "model_type": "speech",
+      "supports_vision": false,
+      "supports_reasoning": false,
+      "reasoning_efforts": [],
+      "is_public": true,
+      "vision_behavior": "vision_fallback",
+      "metadata": {
+        "catalog": "cloud_bot_v7",
+        "catalog_order": 23,
+        "cost_tier": "STANDARD",
+        "registered_input_modalities": [
+          "text",
+          "speech"
+        ],
+        "registered_output_modalities": [
+          "text"
+        ],
+        "runtime_input_modalities": [
+          "text",
+          "image"
+        ],
+        "runtime_output_modalities": [
+          "text"
+        ],
+        "audio_runtime": false,
+        "video_runtime": false,
+        "reasoning_control_runtime": false,
+        "model_type_source": "export",
+        "deployment_name": null
+      }
+    },
+    {
+      "model_key": "deepseek_v3_1",
+      "model_id": "deepseek.v3.1",
+      "display_name": "DeepSeek-V3.1",
+      "manufacturer": "DeepSeek",
+      "backend": "amazon_bedrock",
+      "region": "us-east-1",
+      "api_route": "mantle_default",
+      "context_window": 128000,
+      "max_output": 8000,
+      "model_type": null,
+      "supports_vision": false,
+      "supports_reasoning": false,
+      "reasoning_efforts": [],
+      "is_public": true,
+      "vision_behavior": "vision_fallback",
+      "metadata": {
+        "catalog": "cloud_bot_v7",
+        "catalog_order": 24,
+        "cost_tier": "HIGHER_COST",
+        "registered_input_modalities": [
+          "text"
+        ],
+        "registered_output_modalities": [
+          "text"
+        ],
+        "runtime_input_modalities": [
+          "text",
+          "image"
+        ],
+        "runtime_output_modalities": [
+          "text"
+        ],
+        "audio_runtime": false,
+        "video_runtime": false,
+        "reasoning_control_runtime": false,
+        "model_type_source": "not_specified_in_export",
+        "deployment_name": null
+      }
+    },
+    {
+      "model_key": "gemma_3_27b_it",
+      "model_id": "google.gemma-3-27b-it",
+      "display_name": "Gemma 3 27B IT",
+      "manufacturer": "Google",
+      "backend": "amazon_bedrock",
+      "region": "us-east-1",
+      "api_route": "mantle_default",
+      "context_window": 128000,
+      "max_output": 8000,
+      "model_type": null,
+      "supports_vision": true,
+      "supports_reasoning": false,
+      "reasoning_efforts": [],
+      "is_public": true,
+      "vision_behavior": "native_vision",
+      "metadata": {
+        "catalog": "cloud_bot_v7",
+        "catalog_order": 25,
+        "cost_tier": "STANDARD",
+        "registered_input_modalities": [
+          "text",
+          "image"
+        ],
+        "registered_output_modalities": [
+          "text"
+        ],
+        "runtime_input_modalities": [
+          "text",
+          "image"
+        ],
+        "runtime_output_modalities": [
+          "text"
+        ],
+        "audio_runtime": false,
+        "video_runtime": false,
+        "reasoning_control_runtime": false,
+        "model_type_source": "not_specified_in_export",
+        "deployment_name": null
+      }
+    },
+    {
+      "model_key": "qwen3_coder_480b_a35b",
+      "model_id": "qwen.qwen3-coder-480b-a35b-instruct",
+      "display_name": "Qwen3 Coder 480B A35B Instruct",
+      "manufacturer": "Qwen",
+      "backend": "amazon_bedrock",
+      "region": "us-east-1",
+      "api_route": "mantle_default",
+      "context_window": 128000,
+      "max_output": 16000,
+      "model_type": "code",
+      "supports_vision": false,
+      "supports_reasoning": false,
+      "reasoning_efforts": [],
+      "is_public": true,
+      "vision_behavior": "vision_fallback",
+      "metadata": {
+        "catalog": "cloud_bot_v7",
+        "catalog_order": 26,
+        "cost_tier": "HIGHER_COST",
+        "registered_input_modalities": [
+          "text"
+        ],
+        "registered_output_modalities": [
+          "text"
+        ],
+        "runtime_input_modalities": [
+          "text",
+          "image"
+        ],
+        "runtime_output_modalities": [
+          "text"
+        ],
+        "audio_runtime": false,
+        "video_runtime": false,
+        "reasoning_control_runtime": false,
+        "model_type_source": "export",
+        "deployment_name": null
+      }
+    },
+    {
+      "model_key": "gpt_oss_safeguard_20b",
+      "model_id": "openai.gpt-oss-safeguard-20b",
+      "display_name": "GPT OSS Safeguard 20B",
+      "manufacturer": "OpenAI",
+      "backend": "amazon_bedrock",
+      "region": "us-east-1",
+      "api_route": "mantle_default",
+      "context_window": 128000,
+      "max_output": 16000,
+      "model_type": "safeguard",
+      "supports_vision": false,
+      "supports_reasoning": false,
+      "reasoning_efforts": [],
+      "is_public": false,
+      "vision_behavior": "none",
+      "metadata": {
+        "catalog": "cloud_bot_v7",
+        "catalog_order": 27,
+        "cost_tier": "INTERNAL",
+        "registered_input_modalities": [
+          "text"
+        ],
+        "registered_output_modalities": [
+          "text"
+        ],
+        "runtime_input_modalities": [
+          "text"
+        ],
+        "runtime_output_modalities": [
+          "text"
+        ],
+        "audio_runtime": false,
+        "video_runtime": false,
+        "reasoning_control_runtime": false,
+        "model_type_source": "export",
+        "roles": [
+          "text_moderation"
+        ],
+        "moderation_default_output": 1024,
+        "adaptive_default_output": 2048,
+        "deployment_name": null
+      }
+    },
+    {
+      "model_key": "gpt_oss_safeguard_120b",
+      "model_id": "openai.gpt-oss-safeguard-120b",
+      "display_name": "GPT OSS Safeguard 120B",
+      "manufacturer": "OpenAI",
+      "backend": "amazon_bedrock",
+      "region": "us-east-1",
+      "api_route": "mantle_default",
+      "context_window": 128000,
+      "max_output": 16000,
+      "model_type": "safeguard",
+      "supports_vision": false,
+      "supports_reasoning": false,
+      "reasoning_efforts": [],
+      "is_public": false,
+      "vision_behavior": "none",
+      "metadata": {
+        "catalog": "cloud_bot_v7",
+        "catalog_order": 28,
+        "cost_tier": "INTERNAL",
+        "registered_input_modalities": [
+          "text"
+        ],
+        "registered_output_modalities": [
+          "text"
+        ],
+        "runtime_input_modalities": [
+          "text"
+        ],
+        "runtime_output_modalities": [
+          "text"
+        ],
+        "audio_runtime": false,
+        "video_runtime": false,
+        "reasoning_control_runtime": false,
+        "model_type_source": "export",
+        "roles": [
+          "text_moderation"
+        ],
+        "moderation_default_output": 1024,
+        "adaptive_default_output": 2048,
+        "deployment_name": null
+      }
+    },
+    {
+      "model_key": "voxtral_mini_3b_2507",
+      "model_id": "mistral.voxtral-mini-3b-2507",
+      "display_name": "Voxtral Mini 3B 2507",
+      "manufacturer": "Mistral AI",
+      "backend": "amazon_bedrock",
+      "region": "us-east-1",
+      "api_route": "mantle_default",
+      "context_window": 32000,
+      "max_output": null,
+      "model_type": "speech",
+      "supports_vision": false,
+      "supports_reasoning": false,
+      "reasoning_efforts": [],
+      "is_public": true,
+      "vision_behavior": "vision_fallback",
+      "metadata": {
+        "catalog": "cloud_bot_v7",
+        "catalog_order": 29,
+        "cost_tier": "STANDARD",
+        "registered_input_modalities": [
+          "text",
+          "speech"
+        ],
+        "registered_output_modalities": [
+          "text"
+        ],
+        "runtime_input_modalities": [
+          "text",
+          "image"
+        ],
+        "runtime_output_modalities": [
+          "text"
+        ],
+        "audio_runtime": false,
+        "video_runtime": false,
+        "reasoning_control_runtime": false,
+        "model_type_source": "export",
+        "deployment_name": null
+      }
+    },
+    {
+      "model_key": "qwen3_coder_30b_a3b",
+      "model_id": "qwen.qwen3-coder-30b-a3b-instruct",
+      "display_name": "Qwen3-Coder-30B-A3B-Instruct",
+      "manufacturer": "Qwen",
+      "backend": "amazon_bedrock",
+      "region": "us-east-1",
+      "api_route": "mantle_default",
+      "context_window": 256000,
+      "max_output": 16000,
+      "model_type": "code",
+      "supports_vision": false,
+      "supports_reasoning": false,
+      "reasoning_efforts": [],
+      "is_public": true,
+      "vision_behavior": "vision_fallback",
+      "metadata": {
+        "catalog": "cloud_bot_v7",
+        "catalog_order": 30,
+        "cost_tier": "STANDARD",
+        "registered_input_modalities": [
+          "text"
+        ],
+        "registered_output_modalities": [
+          "text"
+        ],
+        "runtime_input_modalities": [
+          "text",
+          "image"
+        ],
+        "runtime_output_modalities": [
+          "text"
+        ],
+        "audio_runtime": false,
+        "video_runtime": false,
+        "reasoning_control_runtime": false,
+        "model_type_source": "export",
+        "deployment_name": null
+      }
+    },
+    {
+      "model_key": "kimi_k2_thinking",
+      "model_id": "moonshotai.kimi-k2-thinking",
+      "display_name": "Kimi K2 Thinking",
+      "manufacturer": "Moonshot AI",
+      "backend": "amazon_bedrock",
+      "region": "us-east-1",
+      "api_route": "mantle_default",
+      "context_window": 256000,
+      "max_output": 16000,
+      "model_type": "reasoning",
+      "supports_vision": false,
+      "supports_reasoning": false,
+      "reasoning_efforts": [],
+      "is_public": true,
+      "vision_behavior": "vision_fallback",
+      "metadata": {
+        "catalog": "cloud_bot_v7",
+        "catalog_order": 31,
+        "cost_tier": "PREMIUM",
+        "registered_input_modalities": [
+          "text"
+        ],
+        "registered_output_modalities": [
+          "text"
+        ],
+        "runtime_input_modalities": [
+          "text",
+          "image"
+        ],
+        "runtime_output_modalities": [
+          "text"
+        ],
+        "audio_runtime": false,
+        "video_runtime": false,
+        "reasoning_control_runtime": false,
+        "model_type_source": "export",
+        "discrepancies": [
+          "reasoning type but supports_reasoning=False"
+        ],
+        "deployment_name": null
+      }
+    },
+    {
+      "model_key": "qwen3_vl_235b_a22b",
+      "model_id": "qwen.qwen3-vl-235b-a22b-instruct",
+      "display_name": "Qwen3 VL 235B A22B",
+      "manufacturer": "Qwen",
+      "backend": "amazon_bedrock",
+      "region": "us-east-1",
+      "api_route": "mantle_default",
+      "context_window": 256000,
+      "max_output": 8000,
+      "model_type": null,
+      "supports_vision": true,
+      "supports_reasoning": false,
+      "reasoning_efforts": [],
+      "is_public": true,
+      "vision_behavior": "native_vision",
+      "metadata": {
+        "catalog": "cloud_bot_v7",
+        "catalog_order": 32,
+        "cost_tier": "PREMIUM",
+        "registered_input_modalities": [
+          "text",
+          "image"
+        ],
+        "registered_output_modalities": [
+          "text"
+        ],
+        "runtime_input_modalities": [
+          "text",
+          "image"
+        ],
+        "runtime_output_modalities": [
+          "text"
+        ],
+        "audio_runtime": false,
+        "video_runtime": false,
+        "reasoning_control_runtime": false,
+        "model_type_source": "not_specified_in_export",
+        "roles": [
+          "public_chat",
+          "vision_helper",
+          "image_moderation"
+        ],
+        "deployment_name": null
+      }
+    },
+    {
+      "model_key": "magistral_small_2509",
+      "model_id": "mistral.magistral-small-2509",
+      "display_name": "Magistral Small 2509",
+      "manufacturer": "Mistral AI",
+      "backend": "amazon_bedrock",
+      "region": "us-east-1",
+      "api_route": "mantle_default",
+      "context_window": 128000,
+      "max_output": 40000,
+      "model_type": "reasoning",
+      "supports_vision": false,
+      "supports_reasoning": false,
+      "reasoning_efforts": [],
+      "is_public": true,
+      "vision_behavior": "vision_fallback",
+      "metadata": {
+        "catalog": "cloud_bot_v7",
+        "catalog_order": 33,
+        "cost_tier": "HIGHER_COST",
+        "registered_input_modalities": [
+          "text",
+          "image"
+        ],
+        "registered_output_modalities": [
+          "text"
+        ],
+        "runtime_input_modalities": [
+          "text",
+          "image"
+        ],
+        "runtime_output_modalities": [
+          "text"
+        ],
+        "audio_runtime": false,
+        "video_runtime": false,
+        "reasoning_control_runtime": false,
+        "model_type_source": "export",
+        "discrepancies": [
+          "image registered but supports_vision=False",
+          "reasoning type but supports_reasoning=False"
+        ],
+        "deployment_name": null
+      }
+    },
+    {
+      "model_key": "qwen3_235b_a22b_2507",
+      "model_id": "qwen.qwen3-235b-a22b-2507",
+      "display_name": "Qwen3 235B A22B 2507",
+      "manufacturer": "Qwen",
+      "backend": "amazon_bedrock",
+      "region": "us-east-1",
+      "api_route": "mantle_default",
+      "context_window": 256000,
+      "max_output": 8000,
+      "model_type": null,
+      "supports_vision": false,
+      "supports_reasoning": false,
+      "reasoning_efforts": [],
+      "is_public": true,
+      "vision_behavior": "vision_fallback",
+      "metadata": {
+        "catalog": "cloud_bot_v7",
+        "catalog_order": 34,
+        "cost_tier": "STANDARD",
+        "registered_input_modalities": [
+          "text"
+        ],
+        "registered_output_modalities": [
+          "text"
+        ],
+        "runtime_input_modalities": [
+          "text",
+          "image"
+        ],
+        "runtime_output_modalities": [
+          "text"
+        ],
+        "audio_runtime": false,
+        "video_runtime": false,
+        "reasoning_control_runtime": false,
+        "model_type_source": "not_specified_in_export",
+        "deployment_name": null
+      }
+    },
+    {
+      "model_key": "gpt_oss_20b",
+      "model_id": "openai.gpt-oss-20b",
+      "display_name": "GPT OSS 20B",
+      "manufacturer": "OpenAI",
+      "backend": "amazon_bedrock",
+      "region": "us-east-1",
+      "api_route": "mantle_default",
+      "context_window": 128000,
+      "max_output": 16000,
+      "model_type": null,
+      "supports_vision": false,
+      "supports_reasoning": false,
+      "reasoning_efforts": [],
+      "is_public": true,
+      "vision_behavior": "vision_fallback",
+      "metadata": {
+        "catalog": "cloud_bot_v7",
+        "catalog_order": 35,
+        "cost_tier": "STANDARD",
+        "registered_input_modalities": [
+          "text"
+        ],
+        "registered_output_modalities": [
+          "text"
+        ],
+        "runtime_input_modalities": [
+          "text",
+          "image"
+        ],
+        "runtime_output_modalities": [
+          "text"
+        ],
+        "audio_runtime": false,
+        "video_runtime": false,
+        "reasoning_control_runtime": false,
+        "model_type_source": "not_specified_in_export",
+        "deployment_name": null
+      }
+    },
+    {
+      "model_key": "mistral_large_3",
+      "model_id": "mistral.mistral-large-3-675b-instruct",
+      "display_name": "Mistral Large 3",
+      "manufacturer": "Mistral AI",
+      "backend": "amazon_bedrock",
+      "region": "us-east-1",
+      "api_route": "mantle_default",
+      "context_window": 256000,
+      "max_output": 32000,
+      "model_type": null,
+      "supports_vision": true,
+      "supports_reasoning": false,
+      "reasoning_efforts": [],
+      "is_public": true,
+      "vision_behavior": "native_vision",
+      "metadata": {
+        "catalog": "cloud_bot_v7",
+        "catalog_order": 36,
+        "cost_tier": "HIGHER_COST",
+        "registered_input_modalities": [
+          "text",
+          "image"
+        ],
+        "registered_output_modalities": [
+          "text"
+        ],
+        "runtime_input_modalities": [
+          "text",
+          "image"
+        ],
+        "runtime_output_modalities": [
+          "text"
+        ],
+        "audio_runtime": false,
+        "video_runtime": false,
+        "reasoning_control_runtime": false,
+        "model_type_source": "not_specified_in_export",
+        "deployment_name": null
+      }
+    },
+    {
+      "model_key": "ministral_14b_3_0",
+      "model_id": "mistral.ministral-3-14b-instruct",
+      "display_name": "Ministral 14B 3.0",
+      "manufacturer": "Mistral AI",
+      "backend": "amazon_bedrock",
+      "region": "us-east-1",
+      "api_route": "mantle_default",
+      "context_window": 128000,
+      "max_output": 8000,
+      "model_type": null,
+      "supports_vision": true,
+      "supports_reasoning": false,
+      "reasoning_efforts": [],
+      "is_public": true,
+      "vision_behavior": "native_vision",
+      "metadata": {
+        "catalog": "cloud_bot_v7",
+        "catalog_order": 37,
+        "cost_tier": "STANDARD",
+        "registered_input_modalities": [
+          "text",
+          "image"
+        ],
+        "registered_output_modalities": [
+          "text"
+        ],
+        "runtime_input_modalities": [
+          "text",
+          "image"
+        ],
+        "runtime_output_modalities": [
+          "text"
+        ],
+        "audio_runtime": false,
+        "video_runtime": false,
+        "reasoning_control_runtime": false,
+        "model_type_source": "not_specified_in_export",
+        "deployment_name": null
+      }
+    },
+    {
+      "model_key": "ministral_3_8b",
+      "model_id": "mistral.ministral-3-8b-instruct",
+      "display_name": "Ministral 3 8B",
+      "manufacturer": "Mistral AI",
+      "backend": "amazon_bedrock",
+      "region": "us-east-1",
+      "api_route": "mantle_default",
+      "context_window": 128000,
+      "max_output": 8000,
+      "model_type": null,
+      "supports_vision": true,
+      "supports_reasoning": false,
+      "reasoning_efforts": [],
+      "is_public": true,
+      "vision_behavior": "native_vision",
+      "metadata": {
+        "catalog": "cloud_bot_v7",
+        "catalog_order": 38,
+        "cost_tier": "STANDARD",
+        "registered_input_modalities": [
+          "text",
+          "image"
+        ],
+        "registered_output_modalities": [
+          "text"
+        ],
+        "runtime_input_modalities": [
+          "text",
+          "image"
+        ],
+        "runtime_output_modalities": [
+          "text"
+        ],
+        "audio_runtime": false,
+        "video_runtime": false,
+        "reasoning_control_runtime": false,
+        "model_type_source": "not_specified_in_export",
+        "deployment_name": null
+      }
+    },
+    {
+      "model_key": "ministral_3b",
+      "model_id": "mistral.ministral-3-3b-instruct",
+      "display_name": "Ministral 3B",
+      "manufacturer": "Mistral AI",
+      "backend": "amazon_bedrock",
+      "region": "us-east-1",
+      "api_route": "mantle_default",
+      "context_window": 128000,
+      "max_output": 8000,
+      "model_type": null,
+      "supports_vision": true,
+      "supports_reasoning": false,
+      "reasoning_efforts": [],
+      "is_public": true,
+      "vision_behavior": "native_vision",
+      "metadata": {
+        "catalog": "cloud_bot_v7",
+        "catalog_order": 39,
+        "cost_tier": "STANDARD",
+        "registered_input_modalities": [
+          "text",
+          "image"
+        ],
+        "registered_output_modalities": [
+          "text"
+        ],
+        "runtime_input_modalities": [
+          "text",
+          "image"
+        ],
+        "runtime_output_modalities": [
+          "text"
+        ],
+        "audio_runtime": false,
+        "video_runtime": false,
+        "reasoning_control_runtime": false,
+        "model_type_source": "not_specified_in_export",
+        "deployment_name": null
+      }
+    },
+    {
+      "model_key": "nemotron_nano_12b_v2_vl",
+      "model_id": "nvidia.nemotron-nano-12b-v2",
+      "display_name": "NVIDIA Nemotron Nano 12B v2 VL BF16",
+      "manufacturer": "NVIDIA",
+      "backend": "amazon_bedrock",
+      "region": "us-east-1",
+      "api_route": "mantle_default",
+      "context_window": 128000,
+      "max_output": 8000,
+      "model_type": null,
+      "supports_vision": true,
+      "supports_reasoning": false,
+      "reasoning_efforts": [],
+      "is_public": true,
+      "vision_behavior": "native_vision",
+      "metadata": {
+        "catalog": "cloud_bot_v7",
+        "catalog_order": 40,
+        "cost_tier": "STANDARD",
+        "registered_input_modalities": [
+          "text",
+          "image"
+        ],
+        "registered_output_modalities": [
+          "text"
+        ],
+        "runtime_input_modalities": [
+          "text",
+          "image"
+        ],
+        "runtime_output_modalities": [
+          "text"
+        ],
+        "audio_runtime": false,
+        "video_runtime": false,
+        "reasoning_control_runtime": false,
+        "model_type_source": "not_specified_in_export",
+        "deployment_name": null
+      }
+    },
+    {
+      "model_key": "nemotron_nano_9b_v2",
+      "model_id": "nvidia.nemotron-nano-9b-v2",
+      "display_name": "NVIDIA Nemotron Nano 9B v2",
+      "manufacturer": "NVIDIA",
+      "backend": "amazon_bedrock",
+      "region": "us-east-1",
+      "api_route": "mantle_default",
+      "context_window": 128000,
+      "max_output": 8000,
+      "model_type": null,
+      "supports_vision": false,
+      "supports_reasoning": false,
+      "reasoning_efforts": [],
+      "is_public": true,
+      "vision_behavior": "vision_fallback",
+      "metadata": {
+        "catalog": "cloud_bot_v7",
+        "catalog_order": 41,
+        "cost_tier": "STANDARD",
+        "registered_input_modalities": [
+          "text"
+        ],
+        "registered_output_modalities": [
+          "text"
+        ],
+        "runtime_input_modalities": [
+          "text",
+          "image"
+        ],
+        "runtime_output_modalities": [
+          "text"
+        ],
+        "audio_runtime": false,
+        "video_runtime": false,
+        "reasoning_control_runtime": false,
+        "model_type_source": "not_specified_in_export",
+        "deployment_name": null
+      }
+    }
+  ]
+}
