@@ -1,0 +1,24 @@
+AiS-Backend-API
+Copyright 2026 Umarxon Jamshiddinov
+
+The original project files in this repository are licensed under the Apache
+License, Version 2.0. See the root LICENSE file.
+
+Bundled third-party components:
+
+- React runtime bundled in `app/public_portal/assets/index-BDPR0820.js`: MIT
+  License, copyright Meta Platforms, Inc. and affiliates. The source bundle
+  does not record an exact React version. See `LICENSES/MIT-React.txt`.
+- DM Sans font files in `app/public_portal/assets/`: SIL Open Font License
+  1.1, copyright The DM Sans Project Authors.
+  See `LICENSES/OFL-1.1.txt`.
+- Space Grotesk font files in `app/public_portal/assets/`: SIL Open Font
+  License 1.1, copyright The Space Grotesk Project Authors.
+  See `LICENSES/OFL-Space-Grotesk.txt`.
+
+The bundled font software remains under the SIL Open Font License 1.1 and is
+not relicensed under the project license.
+
+The Python packages listed in `requirements.lock.txt` are installed as
+separate dependencies and are not bundled in this repository. Their own
+licenses continue to apply.
