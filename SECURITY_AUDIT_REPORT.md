@@ -3,7 +3,7 @@
 **Repository:** AiS-Backend-API
 **Audit type:** Read-only pre-open-source security audit
 **Verdict:** **NOT READY FOR OPEN SOURCE**
-**Changes made:** This report only. No source code, configuration, or Git history was changed.
+**Audit history:** Sections 1–12 record the initial audit. Section 13 records the follow-up remediation and re-audit.
 
 ## 1. Executive Summary
 
@@ -121,7 +121,7 @@ See **M-1**: `docs/PORTAL_DEPLOYMENT.md:9-12,27,33` and `README.md:246` disclose
 5. Run dependency vulnerability and license checks against the exact release dependency set; clarify how the lock file is enforced.
 6. Recheck all Git refs and history available at publication time, and ensure the final public tree excludes local secrets, generated files, logs, dumps, and backups.
 
-## 12. Open Source Readiness
+## 12. Open Source Readiness — Initial Audit
 
 | Area | Status |
 |---|---|
@@ -137,4 +137,35 @@ See **M-1**: `docs/PORTAL_DEPLOYMENT.md:9-12,27,33` and `README.md:246` disclose
 | `.gitignore` | Coverage was not established by the available audit notes; verify that secrets, runtime state, logs, dumps, and backups are excluded. |
 | Docker Compose / installation / deployment configuration | No Compose or infrastructure configuration was present; deployment details are documented but production setup was not inspected. |
 
-**Final verdict: NOT READY FOR OPEN SOURCE.** The confirmed deployment-information disclosure and unresolved license, bundled-asset, and dependency checks should be addressed before publication. No source-code fixes or other changes have been made.
+**Initial verdict: NOT READY FOR OPEN SOURCE.** The confirmed deployment-information disclosure and unresolved license, bundled-asset, and dependency checks should be addressed before publication. No remediation had been made at the time of this initial assessment.
+
+## 13. Remediation and Repeat Audit — 2026-11-01
+
+### Changes made
+
+- **Deployment documentation:** `README.md` no longer names the deployed API/admin domains or a developer-specific checkout path, and no longer documents that a live credential was used during a smoke test. API examples now use a clearly marked domain placeholder, and the credential section states not to store secrets in source, databases, logs, or reports.
+- **Portal deployment guide:** `docs/PORTAL_DEPLOYMENT.md` now uses generic host, checkout, service, and domain placeholders. The portal installation, validation, and rollback steps are retained.
+- **Security reporting:** Added `SECURITY.md`. It directs reporters to GitHub private vulnerability reporting if enabled; otherwise it asks them to request a private channel via the existing support address without sending exploit details before the channel is confirmed. No new contact address or supported-version promise was invented.
+- **Contributor guidance:** Added `CONTRIBUTING.md` using the Python version and check commands documented by the project.
+- **Business logic, API, production configuration, and Git history:** Not changed.
+
+### Repeat-check results
+
+- Searches of `README.md` and `docs/PORTAL_DEPLOYMENT.md` found no occurrence of the previously disclosed deployment domain, internal host, checkout path, or live-credential-use statement. Examples retain only generic placeholders and local loopback addresses needed to explain usage.
+- No source-code or API changes were made as part of this remediation.
+- **Font and third-party license verification remains inconclusive:** the bundled CSS identifies DM Sans and Space Grotesk font families, but the repository contains no font license notices or third-party notices. The local checkout provides no dependency license metadata or package installation from which to verify the terms of the pinned Python dependencies. No license terms are asserted here. Obtain and review upstream license texts and retain required notices before publication. A project `LICENSE` was not added because ownership and compatibility have not been established.
+- **Dependency vulnerability check:** the locally installed `uv audit` was used against all 50 exact pins in `requirements.lock.txt` (via a temporary PEP 723 audit input; no repository lockfile or environment was created). The OSV-backed check identified:
+  - `certifi==2026.7.22` — GHSA-6q48-6c7w-9gw2 / PYSEC-2026-4320, bundled CA trust issue. Updated to `certifi==2026.10.19` in `requirements.lock.txt:7`.
+  - `opentelemetry-api==1.45.0` — GHSA-xcq7-p3pf-p88h / CVE-2026-114603, potential excessive CPU use while parsing untrusted trace state. Updated to `opentelemetry-api==1.45.1` in `requirements.lock.txt:25`. No application source imports of OpenTelemetry were found, so direct reachability in this service was not established.
+  - The two certifi identifiers refer to the same underlying issue, not two separate certifi flaws.
+- Re-running `uv audit` against the updated 50-pin set reported **no known vulnerabilities and no adverse project statuses**. The first project-level `uv audit --frozen` attempt could not run because the repository has no `uv.lock`; the subsequent exact-pin audit used the existing `requirements.lock.txt`. `README.md` and `CONTRIBUTING.md` now install that pinned file before installing the editable package with `--no-deps`; the installation itself was not run because this workspace has no Python 3.13 virtual environment.
+  - The OSV advisory lookup transmitted dependency names and versions only; no source code, credentials, or repository files were sent.
+- The screenshots, production environment, deployed files, remote-only Git refs, and other clones remain outside the locally verifiable scope described above.
+
+### Remaining release blockers
+
+1. Establish redistribution terms and required notices for the bundled font assets and third-party dependencies, and select/add a project license only after ownership and compatibility are confirmed.
+2. Verify the documented installation and `pip check` in the supported Python 3.13 environment before release.
+3. Review the bundled screenshots and the actual production configuration before publication.
+
+**Post-remediation verdict: NOT READY FOR OPEN SOURCE.** The confirmed deployment-documentation disclosure has been addressed in the two requested files, `SECURITY.md` and `CONTRIBUTING.md` have been added, and the known vulnerable exact pins were updated and re-audited clean. License compatibility remains unverified, and installation was not exercised in a supported Python 3.13 environment.

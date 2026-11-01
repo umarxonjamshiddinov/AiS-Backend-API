@@ -1,6 +1,6 @@
 # AiS API 0.5.0
 
-Рабочий OpenAI-compatible backend: FastAPI, PostgreSQL, SQLAlchemy/Alembic и OpenAI SDK 3.8.0. Публичный адрес — **https://your-api-domain.example/v1**, админка — **https://your-api-domain.example/admin**.
+Рабочий OpenAI-compatible backend: FastAPI, PostgreSQL, SQLAlchemy/Alembic и OpenAI SDK 3.8.0. После развёртывания используйте адрес API и админки, настроенные для вашего окружения.
 
 Каталог из полного экспорта Cloud Bot v7 содержит **42 модели: 40 public и 2 internal**. Новая БД получает ровно 42 записи. В существующей БД сохранены также два прежних маршрута `ais-fast` и `ais-kimi-k2.5`; их прежние ключи и permissions продолжают работать. Ключ с `all_public_models=true` получает 40 публичных моделей нового каталога; legacy aliases требуют отдельного разрешения.
 
@@ -9,9 +9,10 @@
 Все команды ниже — PowerShell из каталога проекта.
 
 ```powershell
-Set-Location '<local-checkout>'
 .\scripts\start.ps1
 ```
+
+Запускайте команды из корня проекта.
 
 Скрипт запускает локальный PostgreSQL, применяет миграции, выполняет идемпотентный seed и запускает Uvicorn на `127.0.0.1:8000`. Если API уже работает на этом порту, второй экземпляр запускать не нужно. Другой порт: `./scripts/start.ps1 -Port 8001`.
 
@@ -30,11 +31,12 @@ Set-Location '<local-checkout>'
 .\.venv\Scripts\python.exe -m uvicorn app.main:app --host 127.0.0.1 --port 8000
 ```
 
-`init-db` сам выполняет `alembic upgrade head` и seed. Ручной SQL не требуется. Для установки в новом checkout нужны Python 3.13+ и PostgreSQL; затем:
+`init-db` сам выполняет `alembic upgrade head` и seed. Ручной SQL не требуется. Для установки в новом checkout нужны Python 3.13+ и PostgreSQL; затем установите закреплённые зависимости и editable-пакет:
 
 ```powershell
 py -3.13 -m venv .venv
-.\.venv\Scripts\python.exe -m pip install -e ".[dev]"
+.\.venv\Scripts\python.exe -m pip install -r requirements.lock.txt
+.\.venv\Scripts\python.exe -m pip install --no-deps -e ".[dev]"
 if (-not (Test-Path .env)) { Copy-Item .env.example .env }
 ```
 
@@ -45,7 +47,6 @@ if (-not (Test-Path .env)) { Copy-Item .env.example .env }
 CLI требует доступ к серверу и его БД. В рабочей БД уже создан пользователь `owner`; команда создания повторно возвращает его без изменения состояния.
 
 ```powershell
-Set-Location '<local-checkout>'
 .\.venv\Scripts\python.exe -m app.manage create-user --name owner
 $issued = .\.venv\Scripts\python.exe -m app.manage create-key --user owner --name cloud-bot | ConvertFrom-Json
 $aisKey = $issued.key
@@ -87,7 +88,7 @@ RPM и TPM поддерживают настоящий **«Без лимита»
 
 ```powershell
 $base = 'http://127.0.0.1:8000/v1'
-# Для публичного доступа: $base = 'https://your-api-domain.example/v1'
+# Для удалённого сервера укажите его API base URL, например: $base = 'https://<your-api-domain>/v1'
 $headers = @{ Authorization = "Bearer $aisKey" }
 
 Invoke-RestMethod -Uri "$base/models" -Headers $headers
@@ -110,7 +111,7 @@ OpenAI SDK:
 import os
 from openai import OpenAI
 
-with OpenAI(api_key=os.environ["AIS_API_KEY"], base_url="https://your-api-domain.example/v1",
+with OpenAI(api_key=os.environ["AIS_API_KEY"], base_url="https://<your-api-domain>/v1",
             max_retries=0, timeout=400) as client:
     print([m.id for m in client.models.list()])
     for model in ("xai.grok-4.3", "moonshotai.kimi-k2.5"):
@@ -170,7 +171,7 @@ Content-Type: application/json
 
 Общий `MantleClient` использует официальный `OpenAI` SDK в ограниченном threadpool существующего async gateway. Wire request соответствует экспорту: `model`, `messages`, `max_tokens`. Никаких boto3, Converse или SigV4 в пути этих 42 моделей. Synchronous SDK выбран для совместимости с существующим lifecycle адаптеров; входящий FastAPI endpoint остаётся async. Legacy Converse adapter обслуживает только ранее существовавшие маршруты.
 
-`OPENAI_BASE_URL` принимается только с HTTPS Mantle hostname. Region и `/v1` либо `/openai/v1` выбираются из DB-записи, независимо от `AWS_REGION`. `your-api-domain.example` — клиентский адрес, его нельзя ставить upstream base. Redirects отключены. SDK retries отключены; собственный retry повторяет connection/timeout, HTTP 429 и 5xx, максимум `AI_RETRY_COUNT` дополнительных попыток.
+`OPENAI_BASE_URL` принимается только с HTTPS Mantle hostname. Region и `/v1` либо `/openai/v1` выбираются из DB-записи, независимо от `AWS_REGION`. Клиентский API domain нельзя ставить upstream base. Redirects отключены. SDK retries отключены; собственный retry повторяет connection/timeout, HTTP 429 и 5xx, максимум `AI_RETRY_COUNT` дополнительных попыток.
 
 ## Возможности и лимиты
 
@@ -243,7 +244,7 @@ Response `id=chatcmpl-<usage.id>` и `X-Request-ID` связывают отве�
 | MODERATION_MODEL_KEY | gpt_oss_safeguard_20b |
 | RESERVATION_TTL_SECONDS / HEARTBEAT_SECONDS / REAPER_SECONDS | В `.env.example` указаны полные имена; 180 / 30 / 30 |
 
-Для совместимости существующий `AWS_BEARER_TOKEN_BEDROCK` используется как серверный fallback, когда `OPENAI_API_KEY` пуст. В текущей установке live smoke использовал этот уже настроенный credential. Секрет не копировался в БД или исходники. `AWS_REGION` относится к прежнему Converse adapter; Mantle resolver использует region модели. При нескольких workers ротация credentials требует согласованного перезапуска.
+Для совместимости существующий `AWS_BEARER_TOKEN_BEDROCK` используется как серверный fallback, когда `OPENAI_API_KEY` пуст. Храните credentials только в конфигурации окружения и не добавляйте их в БД, исходники, логи или отчёты. `AWS_REGION` относится к прежнему Converse adapter; Mantle resolver использует region модели. При нескольких workers ротация credentials требует согласованного перезапуска.
 
 ## Проверки и эксплуатация
 
