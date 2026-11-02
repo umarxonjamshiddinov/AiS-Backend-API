@@ -5,7 +5,6 @@ const $ = id => {
   if (!element) throw new Error("Интерфейс не загрузился полностью. Обновите страницу.");
   return element;
 };
-const PUBLIC_API_BASE_URL = "https://api.myais.uz/v1";
 let adminToken = "", state = null, editingKey = null;
 const number = value => Number(value || 0).toLocaleString();
 const limit = value => value == null ? "∞" : number(value);
@@ -70,6 +69,11 @@ function keyState(k) {
 }
 async function refresh() {
   state = await api("/overview");
+  $("base-url").textContent = state.public_api_base_url;
+  $("issued-url").textContent = state.public_api_base_url;
+  $("local-base-url").textContent = state.deployment_api_base_url;
+  $("local-api").classList.toggle("hidden",
+    state.public_api_base_url === state.deployment_api_base_url);
   $("stat-keys").textContent = number(state.keys.filter(k => keyState(k) === "Активен").length);
   $("stat-requests").textContent = number(state.stats.requests_today);
   $("stat-errors").textContent = "Ошибок: " + number(state.stats.errors_today);
@@ -319,8 +323,4 @@ $("refresh").onclick = () => run(refresh);
 for (const button of document.querySelectorAll(".close")) button.onclick = () => button.closest("dialog").close();
 $("issued-dialog").addEventListener("close", () => { $("issued-key").value = ""; });
 $("copy-key").onclick = () => run(async () => { await navigator.clipboard.writeText($("issued-key").value); notice("Ключ скопирован"); });
-$("base-url").textContent = PUBLIC_API_BASE_URL;
-$("issued-url").textContent = PUBLIC_API_BASE_URL;
-$("local-base-url").textContent = location.origin + "/v1";
-$("local-api").classList.toggle("hidden", location.origin + "/v1" === PUBLIC_API_BASE_URL);
 })();

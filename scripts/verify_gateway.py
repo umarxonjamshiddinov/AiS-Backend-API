@@ -15,9 +15,8 @@ from app.core.config import get_settings
 def verify(base_url, real_bedrock=False):
     url = urlsplit(base_url)
     local = url.scheme == "http" and url.hostname in {"127.0.0.1", "localhost"}
-    public = url.scheme == "https" and url.hostname == "api.myais.uz" and url.port in (None, 443)
-    if not (local or public) or url.username or url.password or url.path not in ("", "/"):
-        raise ValueError("Use a loopback URL or the existing public AiS domain")
+    if not local or url.username or url.password or url.path not in ("", "/"):
+        raise ValueError("Use a loopback URL for this verification script")
     token = get_settings().admin_token
     if not token:
         raise ValueError("Admin credential is not configured")

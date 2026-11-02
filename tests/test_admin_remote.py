@@ -41,7 +41,7 @@ class AdminDOM(HTMLParser):
 
 def test_html_js_dom_contract_and_cache_delivery(gateway):
     client, _ = gateway
-    page = client.get("/admin", headers={"Host": "api.myais.uz"})
+    page = client.get("/admin", headers={"Host": "gateway.example.test"})
     assert page.status_code == 200 and page.headers["cache-control"] == "no-store"
     assert client.get("/admin/").status_code == 200
     dom = AdminDOM(page.text)
@@ -63,7 +63,10 @@ def test_html_js_dom_contract_and_cache_delivery(gateway):
     assert lookups <= set(dom.ids)
     assert 'fetch("/admin/api" + path' in script
     assert 'mode: "same-origin"' in script
-    assert "https://api.myais.uz/v1" in page.text
+    assert "myais.uz" not in page.text.lower()
+    assert "https://gateway.example.test/v1" not in page.text
+    assert "id=\"base-url\">—</code>" in page.text
+    assert "myais.uz" not in script.lower()
     assert "http://127.0.0.1" not in page.text + script
     assert "http://localhost" not in page.text + script
     assert 'value="openai"' not in page.text
@@ -107,6 +110,8 @@ def test_admin_auth_and_secret_free_responses(gateway, monkeypatch):
         )
     result = client.get("/admin/api/overview", headers=headers)
     assert result.status_code == 200
+    assert result.json()["public_api_base_url"] == "http://testserver/v1"
+    assert result.json()["deployment_api_base_url"] == "http://testserver/v1"
     assert set(result.json()["providers"]) == {"bedrock", "amazon_bedrock"}
     assert token not in result.text and "key_hash" not in result.text
     assert "aws_bearer_token_bedrock" not in result.text.lower()
@@ -114,6 +119,13 @@ def test_admin_auth_and_secret_free_responses(gateway, monkeypatch):
     assert "unit-upstream-secret" not in repr(
         Settings(_env_file=None, openai_api_key="unit-upstream-secret")
     )
+    monkeypatch.setattr(
+        "app.core.public_url.get_settings",
+        lambda: SimpleNamespace(public_api_base_url="https://api.example.test/v1"),
+    )
+    configured = client.get("/admin/api/overview", headers=headers).json()
+    assert configured["public_api_base_url"] == "https://api.example.test/v1"
+    assert configured["deployment_api_base_url"] == "http://testserver/v1"
 
 
 def test_authenticated_admin_key_crud_persists_all_limits(gateway, monkeypatch):

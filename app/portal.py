@@ -3,13 +3,15 @@
 import json
 import logging
 import os
+from html import escape
 from pathlib import Path
 
-from fastapi import FastAPI
-from fastapi.responses import FileResponse
+from fastapi import FastAPI, Request
+from fastapi.responses import FileResponse, Response
 from fastapi.staticfiles import StaticFiles
 
 from app.core.config import PROJECT_ROOT
+from app.core.public_url import public_site_url
 
 
 def configured_portal_directory() -> Path | None:
@@ -67,10 +69,19 @@ def mount_portal(application: FastAPI, directory: Path | None = None) -> bool:
 
         return serve
 
+    def sitemap(request: Request):
+        location = escape(public_site_url(request), quote=True)
+        return Response(
+            '<?xml version="1.0" encoding="UTF-8"?>'
+            '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
+            f"<url><loc>{location}</loc></url></urlset>",
+            media_type="application/xml",
+            headers={"Cache-Control": "no-cache"},
+        )
+
     for name, media_type in (
         ("favicon.svg", "image/svg+xml"),
         ("robots.txt", "text/plain"),
-        ("sitemap.xml", "application/xml"),
     ):
         path = directory / name
         if path.is_file():
@@ -80,4 +91,8 @@ def mount_portal(application: FastAPI, directory: Path | None = None) -> bool:
                 methods=["GET", "HEAD"],
                 include_in_schema=False,
             )
+    if (directory / "sitemap.xml").is_file():
+        application.add_api_route(
+            "/sitemap.xml", sitemap, methods=["GET", "HEAD"], include_in_schema=False
+        )
     return True

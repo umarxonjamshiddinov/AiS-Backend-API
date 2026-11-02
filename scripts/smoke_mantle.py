@@ -1,4 +1,4 @@
-"""Exercise the actual API using one temporary AiS key; --live makes two small paid calls."""
+"""Exercise a local API using one temporary key; --live makes two small paid calls."""
 
 import argparse
 import json
@@ -28,11 +28,7 @@ SAFE_CODES = {
 
 def verify(base_url, *, live=False):
     parsed = urlsplit(base_url)
-    allowed = (parsed.scheme == "http" and parsed.hostname in ("127.0.0.1", "localhost")) or (
-        parsed.scheme == "https"
-        and parsed.hostname == "api.myais.uz"
-        and parsed.port in (None, 443)
-    )
+    allowed = parsed.scheme == "http" and parsed.hostname in ("127.0.0.1", "localhost")
     if (
         not allowed
         or parsed.username
@@ -41,7 +37,7 @@ def verify(base_url, *, live=False):
         or parsed.fragment
         or parsed.path not in ("", "/")
     ):
-        raise ValueError("Use a loopback URL or https://api.myais.uz")
+        raise ValueError("Use a loopback URL for this smoke test")
     config = get_settings()
     if not config.admin_token:
         raise ValueError("ADMIN_TOKEN is required")

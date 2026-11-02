@@ -10,7 +10,12 @@ from dotenv import dotenv_values, set_key
 
 ROOT = Path(__file__).resolve().parents[1]
 RUNTIME = ROOT / '.runtime'
-BIN = Path(os.getenv('AIS_POSTGRES_BIN', r'C:\Program Files\PostgreSQL\18\bin'))
+BIN = Path(
+    os.getenv(
+        'POSTGRES_BIN',
+        os.getenv('AIS_POSTGRES_BIN', r'C:\Program Files\PostgreSQL\18\bin'),
+    )
+)
 PORT = 55432
 
 

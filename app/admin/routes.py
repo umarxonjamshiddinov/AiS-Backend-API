@@ -9,6 +9,7 @@ from sqlalchemy import delete, func, select
 
 from app.api.dependencies import get_inference_service
 from app.core.config import PROJECT_ROOT, get_settings
+from app.core.public_url import deployment_api_base_url, public_api_base_url
 from app.db.models import ApiKey, KeyModel, ModelRoute, Usage, User
 from app.db.session import session_factory
 from app.gateway.capabilities import ModelCapabilities
@@ -129,7 +130,7 @@ def serialize_key(db, key, active_requests=0):
 
 
 @router.get("/overview")
-def overview():
+def overview(request: Request):
     at = datetime.now(UTC)
     day = at.replace(hour=0, minute=0, second=0, microsecond=0)
     details = {
@@ -163,6 +164,8 @@ def overview():
             ._mapping
         )
         return {
+            "public_api_base_url": public_api_base_url(request),
+            "deployment_api_base_url": deployment_api_base_url(request),
             "providers": {name: data["configured"] for name, data in details.items()},
             "provider_details": details,
             "capability_defaults": ModelCapabilities().model_dump(),

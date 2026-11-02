@@ -17,7 +17,7 @@
     <p class="muted">Модели, возможности, ключи и технические лимиты.</p></div>
     <button id="logout" class="secondary hidden">Выйти</button></header>
   <section id="login" class="panel login"><h2>Вход администратора</h2>
-    <p class="muted">Введите ADMIN_TOKEN вашего AiS Gateway.</p>
+    <p class="muted">Введите ADMIN_TOKEN вашего API Gateway.</p>
     <form id="login-form"><label>ADMIN_TOKEN<input id="admin-token" type="password" autocomplete="off" required></label>
       <p id="login-status" role="alert"></p><button id="login-submit" type="submit">Войти</button></form></section>
   <div id="app" class="hidden">
@@ -67,7 +67,7 @@
       <p id="cost-summary" class="muted"></p>
       <p class="muted">Необязательный бюджет — общий лимит ключа по настроенным тарифам. Он не является платёжной системой.</p>
     </details>
-    <footer>Public API: <code id="base-url">https://api.myais.uz/v1</code><br>
+    <footer>Public API: <code id="base-url">—</code><br>
       <span id="local-api" class="hidden">Этот сервер: <code id="local-base-url"></code><br></span>
       RPM/TPM: скользящие 60 секунд. День и месяц: календарные периоды UTC.
       Неизвестный расход учитывается консервативно; активные резервы снимаются автоматически.</footer>
@@ -106,7 +106,7 @@
   <div class="section-title"><h2>Ключ создан</h2><button type="button" class="close secondary" aria-label="Закрыть">×</button></div>
   <p class="muted">Скопируйте сейчас. Полное значение больше не будет показано.</p>
   <textarea id="issued-key" readonly rows="3" aria-label="Новый API key"></textarea><button id="copy-key">Копировать</button>
-  <p class="muted">Base URL: <code id="issued-url">https://api.myais.uz/v1</code></p>
+  <p class="muted">Base URL: <code id="issued-url">—</code></p>
 </dialog>
 <dialog id="model-dialog"><form id="model-form">
   <div class="section-title"><h2>Маршрут модели</h2><button type="button" class="close secondary" aria-label="Закрыть">×</button></div>

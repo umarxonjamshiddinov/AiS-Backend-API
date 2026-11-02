@@ -94,7 +94,7 @@ def test_exact_mantle_endpoints(region, route, expected):
 @pytest.mark.parametrize(
     "base",
     [
-        "https://api.myais.uz/v1",
+        "https://gateway.example.test/v1",
         "http://bedrock-mantle.us-east-1.api.aws/v1",
         "https://bedrock-runtime.us-east-1.amazonaws.com/openai/v1",
         "https://bedrock-mantle.us-east-1.api.aws.evil.test/v1",

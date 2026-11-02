@@ -38,9 +38,13 @@ vm.runInNewContext(fs.readFileSync("app/static/admin.js", "utf8"), {
     createTextNode: text => text,
     querySelectorAll: () => []
   },
-  location: {origin: "https://api.myais.uz"},
   navigator: {},
-  fetch: async () => ({ok: true, status: 200, json: async () => overview})
+  fetch: async (url, options) => ({
+    ok: true, status: 200,
+    json: async () => url === "/admin/api/keys" && options.method === "POST"
+      ? {id: "issued-test", key: "sk-myais-test-issued"}
+      : overview
+  })
 });
 
 const tableHas = (table, name) => elements.get(table).children.some(row => row.textContent.includes(name));
@@ -48,6 +52,14 @@ const tableHas = (table, name) => elements.get(table).children.some(row => row.t
   elements.get("admin-token").value = "test-admin-token";
   await elements.get("login-form").onsubmit({preventDefault() {}});
   assert.equal(elements.get("login-status").textContent, "");
+  assert.equal(elements.get("base-url").textContent, overview.public_api_base_url);
+  assert.equal(elements.get("issued-url").textContent, overview.public_api_base_url);
+  elements.get("new-key").onclick();
+  elements.get("key-form").onsubmit({preventDefault() {}});
+  await new Promise(resolve => setImmediate(resolve));
+  assert.equal(elements.get("issued-dialog").open, true);
+  assert.equal(elements.get("issued-key").value, "sk-myais-test-issued");
+  assert.equal(elements.get("issued-url").textContent, overview.public_api_base_url);
   assert.equal(elements.get("stat-keys").textContent, "2");
   assert.equal(elements.get("keys").children.length, 2);
   assert(tableHas("keys", "Active control"));
@@ -59,6 +71,8 @@ const tableHas = (table, name) => elements.get(table).children.some(row => row.t
   assert.equal(elements.get("archived-keys-dialog").open, false);
   overview = fixture.after;
   await elements.get("refresh").onclick();
+  assert.equal(elements.get("base-url").textContent, overview.public_api_base_url);
+  assert.equal(elements.get("issued-url").textContent, overview.public_api_base_url);
   assert.equal(elements.get("stat-keys").textContent, "1");
   assert.equal(elements.get("keys").children.length, 1);
   assert(tableHas("keys", "Active control"));

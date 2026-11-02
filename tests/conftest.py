@@ -1,5 +1,6 @@
 """Integration tests run only in disposable schemas in the dedicated ais_test DB."""
 
+import os
 from uuid import uuid4
 
 import pytest
@@ -40,12 +41,12 @@ class FakeChat(BedrockAdapter):
 
 @pytest.fixture
 def isolated_database():
-    value = dotenv_values(".env").get("TEST_DATABASE_URL")
+    value = os.environ.get("TEST_DATABASE_URL") or dotenv_values(".env").get("TEST_DATABASE_URL")
     if not value:
         pytest.skip("TEST_DATABASE_URL is required for PostgreSQL integration tests")
     url = make_url(value)
-    if url.database != "ais_test" or url.host != "127.0.0.1" or url.port != 55432:
-        pytest.fail("Tests require ais_test on 127.0.0.1:55432")
+    if url.database != "ais_test" or url.host not in ("127.0.0.1", "localhost"):
+        pytest.fail("Integration tests require a local PostgreSQL database named ais_test")
     schema = "test_" + uuid4().hex
     engine = create_engine(value, hide_parameters=True, connect_args={"connect_timeout": 5})
     with engine.begin() as connection:
