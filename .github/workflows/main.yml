@@ -36,6 +36,8 @@ jobs:
           --health-timeout 5s
           --health-retries 5
     env:
+      # Disposable CI-only database credentials; never use these for a real deployment.
+      DATABASE_URL: postgresql+psycopg://ais_owner:local_test_only@127.0.0.1:55432/ais_test
       TEST_DATABASE_URL: postgresql+psycopg://ais_owner:local_test_only@127.0.0.1:55432/ais_test
 
     steps:
